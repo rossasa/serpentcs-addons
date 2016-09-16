@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012-Today Serpent Consulting Services Pvt. Ltd.
-#    (<http://www.serpentcs.com>)
+#                            (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,15 +20,20 @@
 #
 ##############################################################################
 
-from openerp import fields, models
-
-
-class sale_order(models.Model):
-    _inherit = 'sale.order'
-
-    show_price = fields.Boolean('Show Price', help="If checked, you can see"
-                                " the price & discount in report of Sales"
-                                " Order / Quotation.")
-    show_discount = fields.Boolean('Show Discount', help="If checked, you"
-                                    " can see the discount in report of"
-                                    " Sales Order / quotation.")
+{
+    'name': 'Product image for purchase reports',
+    'author': 'Serpent Consulting Services Pvt. Ltd.,\
+             Odoo Community Association (OCA)',
+    'category': 'purchases Management',
+    'website': 'http://www.serpentcs.com',
+    'version': '8.0.1.0.0',
+    'sequence': 1,
+    'depends': ['purchase', 'web_tree_image'],
+    'qweb': [],
+    'data': [
+        'views/purchase_product_view.xml',
+        'views/report_purchase_order.xml',
+    ],
+    'installable': True,
+    'auto_install': False
+}

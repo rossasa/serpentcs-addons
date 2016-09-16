@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012-Today Serpent Consulting Services Pvt. Ltd.
-#    (<http://www.serpentcs.com>)
+#                            (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,15 +20,24 @@
 #
 ##############################################################################
 
-from openerp import fields, models
+from openerp import models, fields
 
 
-class sale_order(models.Model):
-    _inherit = 'sale.order'
+class purchase_order(models.Model):
+    _inherit = 'purchase.order'
 
-    show_price = fields.Boolean('Show Price', help="If checked, you can see"
-                                " the price & discount in report of Sales"
-                                " Order / Quotation.")
-    show_discount = fields.Boolean('Show Discount', help="If checked, you"
-                                    " can see the discount in report of"
-                                    " Sales Order / quotation.")
+    print_image = fields.Boolean('Print Image', help="""If ticked, you can see
+                    the product image in report of purchase order/quotation""")
+    image_sizes = fields.Selection([('image', 'Big sized Image'),
+                                    ('image_medium', 'Medium Sized Image'),
+                                    ('image_small', 'Small Sized Image')],
+                                   'Image Sizes',
+                                   default="image_small",
+                                   help="Image size to be displayed in report")
+
+
+class purchase_order_line(models.Model):
+    _inherit = 'purchase.order.line'
+
+    image_small = fields.Binary('Product Image',
+                                related='product_id.image_small')

@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012-Today Serpent Consulting Services Pvt. Ltd.
-#    (<http://www.serpentcs.com>)
+#                            (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,15 +20,4 @@
 #
 ##############################################################################
 
-from openerp import fields, models
-
-
-class sale_order(models.Model):
-    _inherit = 'sale.order'
-
-    show_price = fields.Boolean('Show Price', help="If checked, you can see"
-                                " the price & discount in report of Sales"
-                                " Order / Quotation.")
-    show_discount = fields.Boolean('Show Discount', help="If checked, you"
-                                    " can see the discount in report of"
-                                    " Sales Order / quotation.")
+from . import models
